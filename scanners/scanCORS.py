@@ -102,10 +102,17 @@ class CORSSecurityScanner:
         issues = []
         protections = []
 
-        # Kiểm tra wildcard ACAO
-        for test_name, test_result in self.results.items():
-            if test_name == 'preflight':
+        # Kiểm tra wildcard ACAO - chỉ kiểm tra test results
+        test_keys = ['no_origin', 'evil_origin', 'null_origin']
+        for test_name in test_keys:
+            if test_name not in self.results:
                 continue
+            test_result = self.results[test_name]
+
+            # Ensure test_result is a dictionary before accessing
+            if not isinstance(test_result, dict):
+                continue
+
             acao = test_result.get('acao')
             acac = test_result.get('acac')
 

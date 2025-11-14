@@ -12,7 +12,7 @@ import importlib.util
 from datetime import datetime
 
 # Add to path
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from core.report import ReportGenerator
 from core.utils import ScannerUtils
